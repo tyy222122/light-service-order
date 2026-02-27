@@ -1,0 +1,421 @@
+:root {
+    --primary: #d4af37; /* Gold */
+    --primary-hover: #b5952f;
+    --bg-dark: #121212;
+    --glass-bg: rgba(25, 25, 25, 0.65);
+    --glass-border: rgba(212, 175, 55, 0.3);
+    --text-main: #fcfcfc;
+    --text-muted: #aaaaaa;
+    --error: #ff4d4d;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    position: relative;
+    background-color: var(--bg-dark);
+    overflow-x: hidden;
+}
+
+/* Dynamic background */
+.background-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, rgba(18, 18, 18, 1) 70%);
+    z-index: -1;
+    animation: pulse 8s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; transform: scale(1.05); }
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUp 0.8s ease forwards;
+}
+
+@keyframes slideUp {
+    to { transform: translateY(0); opacity: 1; }
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.line-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.half {
+    flex: 1;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--primary);
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* Checkboxes */
+.checkbox-group {
+    display:flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    user-select: none;
+    transition: color 0.3s;
+}
+
+.custom-checkbox:hover {
+    color: var(--primary);
+}
+
+.custom-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 22px;
+    width: 22px;
+    background-color: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+    border-color: var(--primary);
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.custom-checkbox .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+button {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    background: linear-gradient(135deg, var(--primary), #e6c253);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background: #555;
+    color: #888;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.loader {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0,0,0,0.2);
+    border-bottom-color: #000;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+#successMessage {
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+#successMessage h2 {
+    color: var(--primary);
+    margin: 1rem 0;
+    font-family: 'Noto Serif TC';
+}
+
+.success-icon {
+    font-size: 4rem;
+    text-shadow: 0 0 20px var(--primary);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Navigation */
+.top-nav {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.top-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-nav a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 5px 15px;
+    border-radius: 15px;
+    transition: all 0.3s;
+}
+
+.top-nav a:hover, .top-nav a.active {
+    background: var(--primary);
+    color: #000;
+    font-weight: bold;
+}
+
+/* Page Specifics */
+.main-page {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.intro-section p, .promo-content p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.cta-buttons.center {
+    justify-content: center;
+}
+
+.btn-primary, .btn-outline {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), #e6c253);
+    color: #000;
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: rgba(212, 175, 55, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Promo Section */
+.promo-image img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid var(--glass-border);
+}
+
+.promo-content h2 {
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.promo-content ul {
+    text-align: left;
+    margin: 15px 0;
+    padding-left: 20px;
+    color: var(--text-main);
+}
+
+.promo-content li {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+        margin-top: 60px;
+    }
+    .line-group {
+        flex-direction: column;
+        gap: 0;
+    }
+    .cta-buttons {
+        flex-direction: column;
+    }
+    .top-nav {
+        top: 10px;
+    }
+    .top-nav ul {
+        gap: 10px;
+        padding: 8px 15px;
+    }
+    .top-nav a {
+        font-size: 0.9rem;
+    }
+}

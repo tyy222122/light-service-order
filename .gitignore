@@ -1,0 +1,10 @@
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Agent/Generated files
+.agent/
+.gemini/
+*.log

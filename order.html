@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>線上點燈 - 線上祈福點燈服務</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-overlay"></div>
+
+    <nav class="top-nav">
+        <ul>
+            <li><a href="index.html">介紹首頁</a></li>
+            <li><a href="promotion.html">清明方案</a></li>
+            <li><a href="order.html" class="active">立即點燈</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>線上祈福點燈平台</h1>
+            <p>誠心祈求，平安順遂</p>
+        </header>
+
+        <form id="orderForm">
+            <div class="form-group">
+                <label for="name">信眾姓名</label>
+                <input type="text" id="name" name="name" required placeholder="請輸入本名">
+            </div>
+
+            <div class="form-group line-group">
+                <div class="half">
+                    <label for="phone">聯絡電話</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="09XX-XXXXXX">
+                </div>
+                <div class="half">
+                    <label for="calendarType">生日類型</label>
+                    <select id="calendarType" name="calendarType">
+                        <option value="國曆">國曆</option>
+                        <option value="農曆">農曆</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="birthday">出生年月日</label>
+                <input type="date" id="birthday" name="birthday" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">聯絡地址</label>
+                <input type="text" id="address" name="address" required placeholder="請填寫完整地址">
+            </div>
+
+            <div class="form-group">
+                <label>祈福燈種 (可多選)</label>
+                <div class="checkbox-group">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="lightType" value="光明燈">
+                        <span class="checkmark"></span>
+                        光明燈 (照耀前途、平安順遂)
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="lightType" value="安太歲">
+                        <span class="checkmark"></span>
+                        安太歲 (消災解厄、趨吉避凶)
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="lightType" value="文昌燈">
+                        <span class="checkmark"></span>
+                        文昌燈 (考運亨通、金榜題名)
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="lightType" value="財神燈">
+                        <span class="checkmark"></span>
+                        財神燈 (財源廣進、事業順利)
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="lightType" value="姻緣燈">
+                        <span class="checkmark"></span>
+                        姻緣燈 (良緣早結、感情和睦)
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="remarks">祈福心願 (備註)</label>
+                <textarea id="remarks" name="remarks" rows="3" placeholder="請寫下您的祈福心願..."></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">
+                <span class="btn-text">確認點燈</span>
+                <span class="loader" style="display: none;"></span>
+            </button>
+        </form>
+
+        <div id="successMessage" class="hidden">
+            <div class="success-icon">✨</div>
+            <h2>報名成功</h2>
+            <p>您的祈福點燈資料已成功送出！</p>
+            <button onclick="location.reload()">再次填寫</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
