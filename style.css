@@ -181,7 +181,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 6px;
     border: 1px solid rgba(212, 175, 55, 0.4);
     font-size: 0.9rem;
-    min-width: 90px;
+    min-width: 130px;
     text-align: right;
 }
 
