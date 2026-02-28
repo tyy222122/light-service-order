@@ -31,7 +31,8 @@ if (orderForm) {
         // 建立準備送出的 JSON 物件
         const payload = {
             name: formData.get('name'),
-            phone: formData.get('phone'),
+            phone: formData.get('phone') || '',
+            email: formData.get('email') || '',
             calendarType: formData.get('calendarType'),
             birthday: formData.get('birthday'),
             address: formData.get('address'),
