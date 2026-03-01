@@ -23,15 +23,23 @@ document.querySelectorAll('input[name="lightType"]').forEach(checkbox => {
     checkbox.addEventListener('change', function () {
         const optionDiv = this.closest('.light-option');
         const subForm = optionDiv.querySelector('.sub-form');
-        const requiredInputs = subForm.querySelectorAll('input[type="text"], input[type="date"]');
+        const requiredInputs = subForm.querySelectorAll('input[type="text"], input[type="date"], textarea');
+        const lightValue = this.value;
 
         if (this.checked) {
             subForm.classList.remove('hidden');
             requiredInputs.forEach(input => {
-                // 排除備註跟地址為非必填
-                if (!input.name.startsWith('address_') && !input.name.startsWith('remarks_')) {
-                    input.required = true;
+                // 預設姓名與生日必填
+                let isRequired = true;
+
+                // 處理特殊必填規則
+                if (input.name.startsWith('address_')) {
+                    isRequired = (lightValue === '祝福地基主'); // 只有地基主必填地址
+                } else if (input.name.startsWith('remarks_')) {
+                    isRequired = (lightValue === '客製化點燈'); // 只有客製化必填備註
                 }
+
+                input.required = isRequired;
             });
         } else {
             subForm.classList.add('hidden');
