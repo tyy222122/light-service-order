@@ -1,20 +1,44 @@
 // 替換為您的 Google Apps Script Web App URL
 const GAS_URL = "https://script.google.com/macros/s/AKfycbxc7G77CShxMbZ_YM2on06Hdscdfm2OZ7CquRyjbC9bfMKQ5sulLJKTQrSY1frHkTI4/exec";
 
-const calendarTypeSelect = document.getElementById('calendarType');
-const birthdayInput = document.getElementById('birthday');
-
-if (calendarTypeSelect && birthdayInput) {
-    calendarTypeSelect.addEventListener('change', function () {
-        if (this.value === '農曆') {
-            birthdayInput.type = 'text';
-            birthdayInput.placeholder = 'YYYY/MM/DD';
-        } else {
-            birthdayInput.type = 'date';
-            birthdayInput.placeholder = '';
+// 處理農曆/國曆切換
+document.querySelectorAll('.calendar-select').forEach(select => {
+    select.addEventListener('change', function () {
+        const optionDiv = this.closest('.light-option');
+        const birthdayInput = optionDiv.querySelector('.birthday-input');
+        if (birthdayInput) {
+            if (this.value === '農曆') {
+                birthdayInput.type = 'text';
+                birthdayInput.placeholder = 'YYYY/MM/DD';
+            } else {
+                birthdayInput.type = 'date';
+                birthdayInput.placeholder = '';
+            }
         }
     });
-}
+});
+
+// 處理燈種勾選，展開對應子表單並設定必填
+document.querySelectorAll('input[name="lightType"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function () {
+        const optionDiv = this.closest('.light-option');
+        const subForm = optionDiv.querySelector('.sub-form');
+        const requiredInputs = subForm.querySelectorAll('input[type="text"], input[type="date"]');
+
+        if (this.checked) {
+            subForm.classList.remove('hidden');
+            requiredInputs.forEach(input => {
+                // 排除備註跟地址為非必填
+                if (!input.name.startsWith('address_') && !input.name.startsWith('remarks_')) {
+                    input.required = true;
+                }
+            });
+        } else {
+            subForm.classList.add('hidden');
+            requiredInputs.forEach(input => input.required = false);
+        }
+    });
+});
 
 const orderForm = document.getElementById('orderForm');
 if (orderForm) {
@@ -39,29 +63,29 @@ if (orderForm) {
 
         // 收集表單資料
         const formData = new FormData(this);
+        const phone = formData.get('phone') || '';
+        const payloadArray = [];
 
-        // 整理多選的燈種成陣列轉字串
-        const selectedLights = Array.from(lightBoxes).map(cb => cb.value).join(', ');
-
-        // 建立準備送出的 JSON 物件
-        const payload = {
-            name: formData.get('name'),
-            phone: formData.get('phone') || '',
-            calendarType: formData.get('calendarType'),
-            birthday: formData.get('birthday'),
-            address: formData.get('address'),
-            lightType: selectedLights,
-            remarks: formData.get('remarks') || '無'
-        };
+        lightBoxes.forEach(checkbox => {
+            const type = checkbox.value;
+            payloadArray.push({
+                name: formData.get(`name_${type}`) || '',
+                phone: phone,
+                calendarType: formData.get(`calendarType_${type}`) || '國曆',
+                birthday: formData.get(`birthday_${type}`) || '',
+                address: formData.get(`address_${type}`) || '',
+                lightType: type,
+                remarks: formData.get(`remarks_${type}`) || '無'
+            });
+        });
 
         try {
             // 發送 POST 請求至 Google Apps Script
             const response = await fetch(GAS_URL, {
                 method: 'POST',
-                body: JSON.stringify(payload),
+                body: JSON.stringify(payloadArray), // 現在改傳送陣列
                 headers: {
                     'Content-Type': 'text/plain;charset=utf-8',
-                    // GAS 以 doPost 接收時，cors 請求通常需設 Content-Type 為 text/plain 來避開預檢請求 (Preflight)
                 }
             });
 
@@ -72,7 +96,7 @@ if (orderForm) {
         } catch (error) {
             console.error('Error!', error.message);
             // 若 GAS_URL 尚未設定或發生錯誤，因為是展示版或開發階段，直接顯示成功畫面做預覽
-            if (GAS_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+            if (GAS_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL" || GAS_URL === "") {
                 console.log("發現使用預設 URL，展示成功畫面");
                 document.getElementById('orderForm').classList.add('hidden');
                 document.getElementById('successMessage').classList.remove('hidden');

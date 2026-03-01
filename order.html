@@ -30,74 +30,200 @@
 
         <form id="orderForm">
             <div class="form-group">
-                <label for="name">申請人姓名</label>
-                <input type="text" id="name" name="name" required placeholder="請輸入本名">
-            </div>
-
-            <div class="form-group">
-                <label for="phone">聯絡電話</label>
-                <input type="tel" id="phone" name="phone" placeholder="09XX-XXXXXX">
-            </div>
-
-
-            <div class="form-group line-group">
-                <div class="half">
-                    <label for="calendarType">生日類型</label>
-                    <select id="calendarType" name="calendarType">
-                        <option value="國曆">國曆</option>
-                        <option value="農曆">農曆</option>
-                    </select>
-                </div>
-                <div class="half">
-                    <label for="birthday">出生年月日</label>
-                    <input type="date" id="birthday" name="birthday" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="address">聯絡地址</label>
-                <input type="text" id="address" name="address" placeholder="請填寫完整地址">
+                <label for="phone">聯絡電話 (主要聯絡人)</label>
+                <input type="tel" id="phone" name="phone" required placeholder="09XX-XXXXXX">
             </div>
 
             <div class="form-group">
                 <label>祝福燈種 (可多選)</label>
                 <div class="checkbox-group">
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="lightType" value="清明方案">
-                        <span class="checkmark"></span>
-                        <span class="light-text">清明祈福方案 (超薦祖先、家運興旺)</span>
-                        <span class="price-tag">3天 NT$ 888</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="lightType" value="淨化守護燈">
-                        <span class="checkmark"></span>
-                        <span class="light-text">淨化守護燈 (淨化磁場、趨吉避凶)</span>
-                        <span class="price-tag">30天 NT$ 11,000</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="lightType" value="人際和諧燈">
-                        <span class="checkmark"></span>
-                        <span class="light-text">人際和諧燈 (增進人緣、關係圓滿)</span>
-                        <span class="price-tag">30天 NT$ 12,000</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="lightType" value="祝福地基主">
-                        <span class="checkmark"></span>
-                        <span class="light-text">祝福地基主 (守護家宅、闔家平安)</span>
-                        <span class="price-tag">30天 $ 12,500</span>
-                    </label>
-                    <label class="custom-checkbox">
-                        <input type="checkbox" name="lightType" value="客製化點燈">
-                        <span class="checkmark"></span>
-                        <span class="light-text">客製化點燈 (請在備註填寫需求)</span>
-                        <span class="price-tag">專人報價</span>
-                    </label>
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label for="remarks">祝福心願 (備註)</label>
-                <textarea id="remarks" name="remarks" rows="3" placeholder="請寫下您的心願..."></textarea>
+                    <!-- 第 1 項：清明方案 -->
+                    <div class="light-option">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="lightType" value="清明方案">
+                            <span class="checkmark"></span>
+                            <span class="light-text">清明祈福方案 (超薦祖先、家運興旺)</span>
+                            <span class="price-tag">3天 NT$ 888</span>
+                        </label>
+                        <div class="sub-form hidden">
+                            <div class="form-group">
+                                <label>申請人姓名</label>
+                                <input type="text" name="name_清明方案" placeholder="請輸入本名">
+                            </div>
+                            <div class="form-group line-group">
+                                <div class="half">
+                                    <label>生日類型</label>
+                                    <select name="calendarType_清明方案" class="calendar-select">
+                                        <option value="國曆">國曆</option>
+                                        <option value="農曆">農曆</option>
+                                    </select>
+                                </div>
+                                <div class="half">
+                                    <label>出生年月日</label>
+                                    <input type="date" name="birthday_清明方案" class="birthday-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>聯絡地址</label>
+                                <input type="text" name="address_清明方案" placeholder="請填寫完整地址">
+                            </div>
+                            <div class="form-group">
+                                <label>祝福心願 (備註)</label>
+                                <textarea name="remarks_清明方案" rows="2" placeholder="請寫下您的心願..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第 2 項：淨化守護燈 -->
+                    <div class="light-option">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="lightType" value="淨化守護燈">
+                            <span class="checkmark"></span>
+                            <span class="light-text">淨化守護燈 (淨化磁場、趨吉避凶)</span>
+                            <span class="price-tag">30天 NT$ 11,000</span>
+                        </label>
+                        <div class="sub-form hidden">
+                            <div class="form-group">
+                                <label>申請人姓名</label>
+                                <input type="text" name="name_淨化守護燈" placeholder="請輸入本名">
+                            </div>
+                            <div class="form-group line-group">
+                                <div class="half">
+                                    <label>生日類型</label>
+                                    <select name="calendarType_淨化守護燈" class="calendar-select">
+                                        <option value="國曆">國曆</option>
+                                        <option value="農曆">農曆</option>
+                                    </select>
+                                </div>
+                                <div class="half">
+                                    <label>出生年月日</label>
+                                    <input type="date" name="birthday_淨化守護燈" class="birthday-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>聯絡地址</label>
+                                <input type="text" name="address_淨化守護燈" placeholder="請填寫完整地址">
+                            </div>
+                            <div class="form-group">
+                                <label>祝福心願 (備註)</label>
+                                <textarea name="remarks_淨化守護燈" rows="2" placeholder="請寫下您的心願..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第 3 項：人際和諧燈 -->
+                    <div class="light-option">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="lightType" value="人際和諧燈">
+                            <span class="checkmark"></span>
+                            <span class="light-text">人際和諧燈 (增進人緣、關係圓滿)</span>
+                            <span class="price-tag">30天 NT$ 12,000</span>
+                        </label>
+                        <div class="sub-form hidden">
+                            <div class="form-group">
+                                <label>申請人姓名</label>
+                                <input type="text" name="name_人際和諧燈" placeholder="請輸入本名">
+                            </div>
+                            <div class="form-group line-group">
+                                <div class="half">
+                                    <label>生日類型</label>
+                                    <select name="calendarType_人際和諧燈" class="calendar-select">
+                                        <option value="國曆">國曆</option>
+                                        <option value="農曆">農曆</option>
+                                    </select>
+                                </div>
+                                <div class="half">
+                                    <label>出生年月日</label>
+                                    <input type="date" name="birthday_人際和諧燈" class="birthday-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>聯絡地址</label>
+                                <input type="text" name="address_人際和諧燈" placeholder="請填寫完整地址">
+                            </div>
+                            <div class="form-group">
+                                <label>祝福心願 (備註)</label>
+                                <textarea name="remarks_人際和諧燈" rows="2" placeholder="請寫下您的心願..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第 4 項：祝福地基主 -->
+                    <div class="light-option">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="lightType" value="祝福地基主">
+                            <span class="checkmark"></span>
+                            <span class="light-text">祝福地基主 (守護家宅、闔家平安)</span>
+                            <span class="price-tag">30天 $ 12,500</span>
+                        </label>
+                        <div class="sub-form hidden">
+                            <div class="form-group">
+                                <label>申請人姓名</label>
+                                <input type="text" name="name_祝福地基主" placeholder="請輸入本名">
+                            </div>
+                            <div class="form-group line-group">
+                                <div class="half">
+                                    <label>生日類型</label>
+                                    <select name="calendarType_祝福地基主" class="calendar-select">
+                                        <option value="國曆">國曆</option>
+                                        <option value="農曆">農曆</option>
+                                    </select>
+                                </div>
+                                <div class="half">
+                                    <label>出生年月日</label>
+                                    <input type="date" name="birthday_祝福地基主" class="birthday-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>聯絡地址</label>
+                                <input type="text" name="address_祝福地基主" placeholder="請填寫完整地址">
+                            </div>
+                            <div class="form-group">
+                                <label>祝福心願 (備註)</label>
+                                <textarea name="remarks_祝福地基主" rows="2" placeholder="請寫下您的心願..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第 5 項：客製化點燈 -->
+                    <div class="light-option">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" name="lightType" value="客製化點燈">
+                            <span class="checkmark"></span>
+                            <span class="light-text">客製化點燈 (請在備註填寫需求)</span>
+                            <span class="price-tag">專人報價</span>
+                        </label>
+                        <div class="sub-form hidden">
+                            <div class="form-group">
+                                <label>申請人姓名</label>
+                                <input type="text" name="name_客製化點燈" placeholder="請輸入本名">
+                            </div>
+                            <div class="form-group line-group">
+                                <div class="half">
+                                    <label>生日類型</label>
+                                    <select name="calendarType_客製化點燈" class="calendar-select">
+                                        <option value="國曆">國曆</option>
+                                        <option value="農曆">農曆</option>
+                                    </select>
+                                </div>
+                                <div class="half">
+                                    <label>出生年月日</label>
+                                    <input type="date" name="birthday_客製化點燈" class="birthday-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>聯絡地址</label>
+                                <input type="text" name="address_客製化點燈" placeholder="請填寫完整地址">
+                            </div>
+                            <div class="form-group">
+                                <label>祝福心願 (備註)</label>
+                                <textarea name="remarks_客製化點燈" rows="2" placeholder="請寫下您的心願..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <button type="submit" id="submitBtn">
