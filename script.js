@@ -1,6 +1,21 @@
 // 替換為您的 Google Apps Script Web App URL
 const GAS_URL = "https://script.google.com/macros/s/AKfycbxc7G77CShxMbZ_YM2on06Hdscdfm2OZ7CquRyjbC9bfMKQ5sulLJKTQrSY1frHkTI4/exec";
 
+const calendarTypeSelect = document.getElementById('calendarType');
+const birthdayInput = document.getElementById('birthday');
+
+if (calendarTypeSelect && birthdayInput) {
+    calendarTypeSelect.addEventListener('change', function () {
+        if (this.value === '農曆') {
+            birthdayInput.type = 'text';
+            birthdayInput.placeholder = 'YYYY/MM/DD';
+        } else {
+            birthdayInput.type = 'date';
+            birthdayInput.placeholder = '';
+        }
+    });
+}
+
 const orderForm = document.getElementById('orderForm');
 if (orderForm) {
     orderForm.addEventListener('submit', async function (e) {
@@ -32,7 +47,6 @@ if (orderForm) {
         const payload = {
             name: formData.get('name'),
             phone: formData.get('phone') || '',
-            email: formData.get('email') || '',
             calendarType: formData.get('calendarType'),
             birthday: formData.get('birthday'),
             address: formData.get('address'),
