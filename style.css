@@ -363,7 +363,7 @@ button:disabled {
 .qr-code {
     display: block;
     margin: 1.2rem auto 0;
-    max-width: 100px;
+    max-width: 200px;
     border-radius: 12px;
     border: 2px solid var(--primary);
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
