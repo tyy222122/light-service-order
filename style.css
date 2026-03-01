@@ -329,6 +329,46 @@ button:disabled {
     }
 }
 
+.payment-info,
+.line-contact {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    text-align: left;
+}
+
+.payment-info h3,
+.line-contact h3 {
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+    font-size: 1.15rem;
+    text-align: center;
+    font-family: 'Noto Serif TC', serif;
+}
+
+.payment-info p,
+.line-contact p {
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.line-contact p strong {
+    color: var(--primary);
+}
+
+.qr-code {
+    display: block;
+    margin: 1.2rem auto 0;
+    max-width: 140px;
+    border-radius: 12px;
+    border: 2px solid var(--primary);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+}
+
 /* Navigation */
 .top-nav {
     position: absolute;
