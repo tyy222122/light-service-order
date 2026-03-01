@@ -497,6 +497,26 @@ button:disabled {
         gap: 0;
     }
 
+    .custom-checkbox {
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    .light-text {
+        flex: 1 1 100%;
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+
+    .price-tag {
+        margin-left: 0;
+    }
+
+    .checkmark {
+        top: 2px;
+        transform: none;
+    }
+
     .cta-buttons {
         flex-direction: column;
     }
