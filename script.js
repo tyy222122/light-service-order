@@ -71,12 +71,14 @@ if (orderForm) {
 
         // 收集表單資料
         const formData = new FormData(this);
+        const mainName = formData.get('mainName') || '';
         const phone = formData.get('phone') || '';
         const payloadArray = [];
 
         lightBoxes.forEach(checkbox => {
             const type = checkbox.value;
             payloadArray.push({
+                mainName: mainName,
                 name: formData.get(`name_${type}`) || '',
                 phone: phone,
                 calendarType: formData.get(`calendarType_${type}`) || '國曆',
