@@ -102,6 +102,7 @@ if (orderForm) {
             // if response is ok
             document.getElementById('orderForm').classList.add('hidden');
             document.getElementById('successMessage').classList.remove('hidden');
+            window.scrollTo(0, 0);
 
         } catch (error) {
             console.error('Error!', error.message);
@@ -110,6 +111,7 @@ if (orderForm) {
                 console.log("發現使用預設 URL，展示成功畫面");
                 document.getElementById('orderForm').classList.add('hidden');
                 document.getElementById('successMessage').classList.remove('hidden');
+                window.scrollTo(0, 0);
             } else {
                 alert('送出失敗，請稍後再試。');
                 submitBtn.disabled = false;
